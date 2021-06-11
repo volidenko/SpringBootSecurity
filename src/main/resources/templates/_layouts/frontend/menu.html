@@ -1,0 +1,29 @@
+<!--    Главное меню -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="menu" >
+<!--	th:if="${!categories.isEmpty()}"-->
+	<div class="header-categories">
+		<div class="category-item category-item-title">Категории:</div>
+	</div>
+	<div class="header-categories">
+		<div th:each="category : ${categories}">
+			<div th:if="${category.id == selectedCategory.id}">
+				<div class="category-item category-item-active">
+						<span class="categoryText" th:text="${category.title}">
+							category.title
+						</span>
+				</div>
+			</div>
+			<div th:classappend="'category-item scheme-grey border-'"
+				 th:if="${category.id != selectedCategory.id}">
+				<a class="categoryText" th:href="@{'/categories/' + ${category.id}}" th:text="${category.title}">
+					category.title
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
